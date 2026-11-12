@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A group e-portfolio exploring motorsport culture, our research, presentation and teamwork.">
+  <title>Motorsport Culture | Group E-Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b0d10; --panel: #14181e; --panel2: #1b2129; --text: #f4f5f7;
+      --muted: #aab2bd; --red: #e53935; --line: #2a313b; --white: #fff;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: Arial, Helvetica, sans-serif; line-height: 1.65; }
+    a { color: inherit; text-decoration: none; }
+    .topbar { position: sticky; top: 0; z-index: 20; background: rgba(11,13,16,.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .nav { max-width: var(--max); margin: auto; padding: 14px 22px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .brand { font-weight: 900; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+    .brand span { color: var(--red); }
+    .navlinks { display: flex; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
+    .navlinks a { color: var(--muted); font-size: .88rem; font-weight: 700; }
+    .navlinks a:hover { color: var(--white); }
+    .hero { min-height: 590px; display: grid; place-items: center; text-align: center; padding: 90px 22px; position: relative; overflow: hidden;
+      background: linear-gradient(110deg, rgba(5,7,10,.94), rgba(5,7,10,.66)), url('https://images.unsplash.com/photo-1532906619279-a4b7267f9a8d?auto=format&fit=crop&w=1800&q=85') center/cover; }
+    .hero:before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 80% 20%, rgba(229,57,53,.20), transparent 35%); pointer-events: none; }
+    .hero-inner { position: relative; max-width: 850px; }
+    .eyebrow { color: #ff6b67; font-size: .78rem; letter-spacing: .22em; text-transform: uppercase; font-weight: 800; }
+    h1 { font-size: clamp(2.8rem, 8vw, 6.5rem); line-height: .98; margin: 18px 0; text-transform: uppercase; letter-spacing: -.045em; }
+    h1 span { color: var(--red); }
+    .hero p { max-width: 650px; margin: 0 auto 28px; color: #d5d9df; font-size: 1.08rem; }
+    .button { display: inline-block; background: var(--red); color: white; padding: 12px 20px; border-radius: 4px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; font-size: .82rem; }
+    .button.secondary { background: transparent; border: 1px solid #68717e; margin-left: 8px; }
+    main { max-width: var(--max); margin: auto; padding: 0 22px 70px; }
+    section { padding: 76px 0 12px; }
+    .section-head { margin-bottom: 28px; }
+    .section-head .eyebrow { margin-bottom: 8px; display: block; }
+    h2 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.7rem); text-transform: uppercase; letter-spacing: -.025em; }
+    .intro { color: var(--muted); max-width: 720px; margin-top: 10px; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
+    .span-4 { grid-column: span 4; } .span-6 { grid-column: span 6; } .span-8 { grid-column: span 8; } .span-12 { grid-column: span 12; }
+    .card h3 { margin: 0 0 8px; font-size: 1.15rem; }
+    .card p, .card li { color: var(--muted); }
+    .meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 28px; text-align: left; }
+    .meta div { background: rgba(20,24,30,.85); border: 1px solid var(--line); padding: 14px; border-radius: 7px; }
+    .meta small { display: block; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-size: .68rem; }
+    .meta strong { display: block; margin-top: 4px; }
+    .toc a { display: flex; justify-content: space-between; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); color: var(--muted); }
+    .toc a:hover { color: white; }
+    .toc b { color: var(--red); }
+    .timeline { position: relative; margin-left: 8px; }
+    .timeline:before { content: ""; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+    .week { position: relative; padding: 0 0 24px 38px; }
+    .week:before { content: ""; position: absolute; left: 1px; top: 7px; width: 16px; height: 16px; background: var(--red); border: 3px solid var(--bg); border-radius: 50%; }
+    .week h3 { margin: 0 0 4px; }
+    .week p { margin: 0; color: var(--muted); }
+    .media-placeholder { min-height: 170px; display: grid; place-items: center; text-align: center; border: 1px dashed #59616d; border-radius: 8px; color: var(--muted); padding: 18px; background: var(--panel2); }
+    .tag { display: inline-block; color: #ffaaa7; background: rgba(229,57,53,.12); padding: 4px 9px; border-radius: 30px; font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+    .reflection { border-left: 3px solid var(--red); padding: 4px 0 4px 18px; color: var(--muted); }
+    .footer { border-top: 1px solid var(--line); margin-top: 75px; padding: 28px 22px; text-align: center; color: var(--muted); font-size: .85rem; }
+    .edit-note { color: #ffc1be; font-size: .82rem; }
+    @media (max-width: 760px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      .navlinks { justify-content: flex-start; gap: 12px; }
+      .span-4, .span-6, .span-8 { grid-column: span 12; }
+      .hero { min-height: 520px; }
+      .meta { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="#home">MOTOR<span>SPORT</span> CULTURE</a>
+      <div class="navlinks">
+        <a href="#about">About</a><a href="#contents">Contents</a><a href="#timeline">Timeline</a>
+        <a href="#presentation">Presentation</a><a href="#process">Our Process</a><a href="#reflection">Reflection</a>
+      </div>
+    </nav>
+  </header>
+
+  <header class="hero" id="home">
+    <div class="hero-inner">
+      <div class="eyebrow">Group E-Portfolio · Our Collective Work</div>
+      <h1>Japan<br><span>Motorsport Culture</span></h1>
+      <p>Exploring the people, passion, technology and community behind the world of motorsport.</p>
+      <a class="button" href="#about">Explore the project</a>
+      <a class="button secondary" href="#presentation">View our work</a>
+      <div class="meta">
+        <div><small>Course name & code</small><strong>[FEL1443, Start Japanese: Language and Culture Essentials]</strong></div>
+        <div><small>Group members</small><strong>[Nicholas Chin Sheng Cong, Chan Yik Jaw, Ng Jia Wei, Bryan Lim Jun Yu]</strong></div>
+        <div><small>Lecturer</small><strong>[Miss Lam Lai Ying]</strong></div>
+        <div><small>Submission date</small><strong>[13/11/2026]</strong></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="section-head"><span class="eyebrow">01 · Introduction</span><h2>About this project</h2></div>
+      <div class="grid">
+        <article class="card span-8">
+          <h3>What is motorsport culture?</h3>
+          <p>Motorsport is more than a competition between drivers and machines. It brings together engineering, teamwork, strategy, entertainment and passionate fans. Different racing communities have their own traditions, identities and ways of celebrating the sport.</p>
+          <p>Through this project, our group explores the culture surrounding motorsport and shares what we have learned through research, discussion and our group presentation.</p>
+        </article>
+        <article class="card span-4">
+          <span class="tag">Our objective</span>
+          <h3 style="margin-top:14px">Learn · Explore · Share</h3>
+          <p>To understand motorsport culture, communicate our findings clearly and reflect on the teamwork involved in completing the project.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contents">
+      <div class="section-head"><span class="eyebrow">02 · Navigation</span><h2>Table of contents</h2><p class="intro">Use the links below to explore our project from the initial idea to the final reflection.</p></div>
+      <div class="card toc">
+        <a href="#about"><span><b>01</b> &nbsp; About this project</span><span>↗</span></a>
+        <a href="#timeline"><span><b>02</b> &nbsp; Project timeline</span><span>↗</span></a>
+        <a href="#presentation"><span><b>03</b> &nbsp; Group presentation</span><span>↗</span></a>
+        <a href="#process"><span><b>04</b> &nbsp; Our working process and evidence</span><span>↗</span></a>
+        <a href="#reflection"><span><b>05</b> &nbsp; Final group reflection</span><span>↗</span></a>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <div class="section-head"><span class="eyebrow">03 · Weekly progress</span><h2>Project timeline</h2><p class="intro">  An overview of our group's progress, from selecting
+      our topic to completing the final e-portfolio.</p></div>
+      <div class="card timeline">
+        <div class="week"><h3>Week 1 — Topic Selection</h3><p> Discussed possible topics, shared our interests and selected Japan's Motorsport as our group presentation theme.</p></div>
+        <div class="week"><h3>Week 2 — Research and Exploration</h3><p>Researched Japan's motorsport culture, explored
+        different racing communities and gathered
+        relevant information for our presentation.</p></div>
+        <div class="week"><h3>Week 3 — Organising Ideas</h3><p> Discussed our research findings, organised the
+        presentation structure and divided responsibilities
+        among group members.</p></div>
+        <div class="week"><h3>Week 4 — Slide Preparation</h3><p> Prepared presentation content, selected relevant
+        pictures and visuals, and developed our speaking
+        points.</p></div>
+        <div class="week"><h3>Week 5 — Content Development</h3><p>Continued improving our slides, reviewed the
+        information collected and refined our presentation
+        materials.</p></div>
+        <div class="week"><h3>Week 6 — Final Preparation and Rehearsal</h3><p>Reviewed the completed presentation, checked
+        the content and visuals, and prepared our
+        speaking parts before the presentation.</p></div>
+           <div class="week">
+      <h3>Week 7 — Group Presentation and E-Portfolio</h3>
+      <p>
+        Presented our topic, Japan's Motorsport, and
+        shared our findings with the class. After the
+        presentation, we started developing our group
+        e-portfolio to showcase our research, presentation
+        materials, drafts and evidence of collaboration.
+        We also began preparing our 600–800-word group
+        reflection.
+      </p>
+    </div>
+      </div>
+    </section>
+
+     
+<section id="presentation">
+  <div class="section-head">
+    <span class="eyebrow">04 · Final output</span>
+    <h2>Our Group Presentation</h2>
+    <p class="intro">
+      Showcase the final presentation and the key media used to communicate our topic.
+    </p>
+  </div>
+
+  <div class="grid">
+
+    <!-- Presentation Slides -->
+    <article class="card span-6">
+      <h3>Presentation Slides</h3>
+      <div class="media-placeholder" style="padding:0; overflow:hidden;">
+        <iframe
+          src="https://imailsunwayedu-my.sharepoint.com/personal/26016832_imail_sunway_edu_my/_layouts/15/Doc.aspx?sourcedoc={4be0b96b-7ef0-4b48-870a-b1131328519c}&amp;action=embedview&amp;wdAr=1.7777777777777777"
+          width="100%"
+          height="450"
+          frameborder="0"
+          title="Japan's Motorsport Presentation"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </article>
+
+    <!-- Presentation Video -->
+    <article class="card span-6">
+      <h3>Presentation Video</h3>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px;">
+        <iframe
+          src="https://www.youtube.com/embed/6v49nNnnlzo"
+          title="Japan's Motorsport Presentation"
+          style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </article>
+
+    <!-- Key Topics -->
+    <article class="card span-12">
+      <h3>Key Topics and Highlights</h3>
+
+      <div class="grid">
+
+        <div class="span-4">
+          <span class="tag">Topic 01</span>
+          <h3>Motorsport History</h3>
+          <p>Explore the origins and development of motorsport, including how racing has evolved over the years.</p>
+        </div>
+
+        <div class="span-4">
+          <span class="tag">Topic 02</span>
+          <h3>Motorbike Culture</h3>
+          <p>Discover motorcycle culture, including riders' passion, bike communities, lifestyle and motorcycle care.</p>
+        </div>
+
+        <div class="span-4">
+          <span class="tag">Topic 03</span>
+          <h3>Japan MotoGP</h3>
+          <p>Highlight Japan's MotoGP racing scene, famous circuits and contribution to motorcycle racing.</p>
+        </div>
+
+        <div class="span-4">
+          <span class="tag">Topic 04</span>
+          <h3>Technology and Innovation</h3>
+          <p>Learn how motorsport drives technological development in motorcycle engineering, safety and performance.</p>
+        </div>
+
+        <div class="span-4">
+          <span class="tag">Topic 05</span>
+          <h3>Motorsport Community</h3>
+          <p>Understand how motorsport brings people together through shared interests and racing events.</p>
+        </div>
+
+        <div class="span-4">
+          <span class="tag">Topic 06</span>
+          <h3>Initial D: From Anime to Reality</h3>
+          <p>Explore how Initial D influences real-life drifting, mountain road racing and car enthusiasts.</p>
+        </div>
+
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+
+<section id="process">
+  <div class="section-head">
+    <span class="eyebrow">05 · Behind the scenes</span>
+    <h2>Our Working Process</h2>
+    <p class="intro">
+      A look at how our group researched and worked together
+      to prepare our Japanese Motorsport presentation.
+    </p>
+  </div>
+
+  <div class="grid">
+
+    <!-- Research and References -->
+    <article class="card span-6">
+      <h3>Research and References</h3>
+      <p>
+        Research materials about Japanese car culture,
+        JDM culture and motorsport.
+      </p>
+
+      <div class="media-placeholder">
+        <p><strong>What's Happened to Japan's Car Culture?</strong></p>
+        <p>Source: Top Gear</p>
+        <p>Author: Rowan Horncastle</p>
+        <p>Published: 9 April 2016</p>
+        <a href="https://www.topgear.com/car-news/big-reads/whats-happened-japans-car-culture"
+           target="_blank" rel="noopener">
+          Read Original Article →
+        </a>
+      </div>
+    </article>
+
+    <!-- Group Collaboration -->
+    <article class="card span-6">
+      <h3>Group Collaboration</h3>
+      <p>
+        Each group member was assigned a different topic
+        to research and present, covering various aspects
+        of Japanese motorsport culture.
+      </p>
+
+      <div class="collaboration-list">
+        <p><strong>JW</strong> – Initial D: From Anime to Reality</p>
+        <p><strong>Nicholas</strong> – Japanese Motorcycle Culture</p>
+        <p><strong>Bryan</strong> – Japanese Cars After 2000 and Why They Last So Long</p>
+        <p><strong>YJ</strong> – Japanese Car Modification Culture</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+    
+<section id="reflection">
+  <div class="section-head">
+    <span class="eyebrow">06 · What we learned</span>
+    <h2>Final Group Reflection</h2>
+    <p class="intro">
+      Reflecting on our learning experiences, cultural discoveries,
+      Japanese language development and teamwork.
+    </p>
+  </div>
+
+  <div class="grid">
+    <article class="card span-12">
+      <h3>Our Group Reflection</h3>
+
+      <p>
+        Our group chose Japanese motorsport culture because it brings
+        together things many of us already enjoy: cars, motorcycles,
+        engineering, and anime. Japan has shaped global car culture
+        through manufacturers like Toyota, Nissan, Honda, and Yamaha;
+        racing circuits like Suzuka; and the street-racing story in
+        <em>Initial D</em>. Our presentation aimed to introduce this
+        culture to our classmates and practise using simple Japanese
+        in a real context. This project let us treat Japanese as a
+        language that carries a culture, not only a subject with
+        vocabulary lists.
+      </p>
+
+      <p>
+        We divided the work by topic. Each member took one area:
+        Japanese cars, motorcycles, <em>Initial D</em>, or modification
+        culture. We researched our own sections, then combined
+        everything into a single set of slides. We used a shared
+        document to keep track of sources and a group chat to give
+        feedback. The main difficulty was coordination. Our class and
+        assignment schedules rarely matched, so meetings were hard to
+        arrange, and our first draft had inconsistent fonts, layouts,
+        and levels of detail. We fixed this by agreeing on one template
+        and having one member edit the final slides for consistency.
+      </p>
+
+      <p>
+        The research taught us more than we expected. For Japanese cars,
+        we learned how the industry became known for reliability and
+        fuel efficiency, as well as performance cars such as the
+        Skyline GT-R, the Supra, and the RX-7. For motorcycles, we saw
+        how Japanese brands dominate the global market and how
+        competitive racing feeds back into ordinary road bikes.
+        <em>Initial D</em> showed us how a manga and anime series could
+        popularise mountain-pass driving, or “touge”, and the drift
+        technique around the world. It also made us look more closely
+        at tuning. We learned that modification involves engine tuning,
+        suspension, aerodynamics, and weight reduction, and is more
+        than just making a car look good.
+      </p>
+
+      <p>
+        Culturally, we saw that Japanese car culture reflects several
+        values at once. Innovation shows in technologies such as rotary
+        engines and hybrid systems. Engineering discipline shows in
+        the attention to precision and reliability. Personal style
+        shows in the way owners customise their cars, from understated
+        tuning to bold designs. Passion for racing runs through all of
+        it, from professional circuits to amateur gatherings at car
+        meets. We also noticed that tuning is often about respect for
+        craftsmanship, not simply showing off. That changed how we
+        saw the culture. We had thought of it as a hobby, but it is
+        closer to a community with its own shared standards and
+        etiquette.
+      </p>
+
+      <p>
+        Our Japanese development was smaller than the cultural
+        learning, but it was real. Preparing the presentation meant
+        practising greetings such as こんにちは and はじめまして,
+        writing self-introductions, and learning vocabulary such as
+        車 (kuruma), バイク (baiku), レース (rēsu) and 運転 (unten).
+        Pronunciation was the hardest part. Long vowels, double
+        consonants, and pitch were easy to get wrong, and we sometimes
+        sounded unnatural when we read from our notes. Rehearsing aloud
+        and correcting each other helped, and by the end we were
+        noticeably more confident. We also realised that many
+        motorsport terms are loanwords in katakana, which made some
+        vocabulary easier to remember.
+      </p>
+
+      <p>
+        As a group, our main strength was dividing the work fairly.
+        Everyone took responsibility for a section, and members helped
+        each other when someone was stuck. We were also genuinely
+        interested in the topic, which kept us motivated. Our
+        limitations were time management, since we sometimes finished
+        our parts close to the deadline, and integrating our research,
+        since individual sections did not always flow together. Some
+        of us also struggled with speaking confidently, especially in
+        Japanese. In the future, we would set earlier internal
+        deadlines, rehearse the whole presentation together more than
+        once, and spend more time practising pronunciation before
+        presenting.
+      </p>
+
+      <p>
+        In conclusion, this project gave us a clearer understanding
+        of Japanese motorsport culture, a bit more confidence with
+        basic Japanese, and practical teamwork experience. We learned
+        that culture is expressed through everyday things like cars,
+        bikes, stories and communities, and that a language is easier
+        to remember when it is tied to something we care about. The
+        difficulties we faced, especially in time management and
+        coordination, were useful lessons that we can carry into
+        future group work.
+      </p>
+    </article>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <strong>MOTORSPORT CULTURE · GROUP E-PORTFOLIO</strong>
+    <p>Created by [Group1]</p>
+  </footer>
+</body>
+</html>
